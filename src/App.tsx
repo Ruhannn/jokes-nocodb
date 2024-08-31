@@ -8,6 +8,7 @@ import { formatDateTime } from "./lib/utils";
 import { CgClose } from "react-icons/cg";
 import { useClickAway } from "react-use";
 import NavBar from "./Components/NavBar";
+import Footer from "./Components/Footer";
 
 function App() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -73,6 +74,7 @@ function App() {
           )}
         </AnimatePresence>
       </div>
+      <Footer />
     </div>
   );
 }
