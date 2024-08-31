@@ -1,32 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { Input, Label } from "./Form";
 import { cn } from "../lib/utils";
-import { useJokes } from "../service";
 
-export function AddJoke() {
-  const { addNewJoke } = useJokes();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+export function AddJoke({ handleSubmit }: any) {
 
-    const name = formData.get("name") as string;
-    const joke = formData.get("joke") as string;
-    if (!name) {
-      alert("Please enter your name.");
-      return;
-    }
 
-    if (!joke) {
-      alert("Please enter a joke.");
-      return;
-    }
-    addNewJoke({ title: name, joke: joke });
-  };
 
   return (
-    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black">
-      <h2 className="font-bold text-xl  text-neutral-200">Noco Jokes</h2>
-      <p className=" text-sm max-w-sm mt-2 text-neutral-300">
+    <div
+      className="w-full max-w-md p-4 mx-auto bg-black rounded-none md:rounded-2xl md:p-8 shadow-input"
+    >
+      <h2 className="text-xl font-bold text-neutral-200">Noco Jokes</h2>
+      <p className="max-w-sm mt-2 text-sm text-neutral-300">
         submit your cutest Joke
       </p>
 
@@ -51,11 +37,11 @@ export function AddJoke() {
   );
 }
 
-const BottomGradient = () => {
+export const BottomGradient = () => {
   return (
     <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+      <span className="absolute inset-x-0 block w-full h-px transition duration-500 opacity-0 group-hover/btn:opacity-100 -bottom-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+      <span className="absolute block w-1/2 h-px mx-auto transition duration-500 opacity-0 group-hover/btn:opacity-100 blur-sm -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
     </>
   );
 };

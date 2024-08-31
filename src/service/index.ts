@@ -1,9 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "../api";
 import { Joke } from "../types";
+import { toast } from "sonner";
 
 const getJokes = async () => {
-  const { data } = await api.get("/records");
+  const { data } = await api.get("/records?limit=1000");
   return data.list;
 };
 const addJoke = async (joke: Joke) => {
@@ -18,7 +19,7 @@ export const useJokes = () => {
     queryFn: getJokes,
     refetchInterval: 600000,
   });
-// 
+  //
   const { mutate: addNewJoke } = useMutation({
     mutationFn: addJoke,
     onMutate: async (newJoke: Joke) => {
@@ -32,7 +33,7 @@ export const useJokes = () => {
     },
     onError: (err, __, context) => {
       qc.setQueryData(["Jokes"], context?.previousJokes);
-      //   toast.error(`${err.message} :C`);
+      toast.error(`${err.message} :C`);
     },
     onSuccess: () => {
       console.log("added");
