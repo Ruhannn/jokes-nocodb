@@ -52,7 +52,7 @@ const NavBar = () => {
       return;
     }
     addNewJoke({ title: name, joke: joke });
-    toast.success("may this is the reason of someone laugh ty ;3");
+    toast.success("may this is the reason of someone's laugh ty ;3");
     setIsModalOpen(false);
   };
 
