@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from "framer-motion";
-import Error from "./Components/Error";
 import Loading from "./Components/Loading";
 import { useJokes } from "./service";
 import { Joke } from "./types";
@@ -13,16 +12,14 @@ import Footer from "./Components/Footer";
 function App() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   // console.log(selectedId);
-  const { data, error, isLoading } = useJokes();
+  const { data, isLoading } = useJokes();
 
   const modalRef = useRef<HTMLDivElement>(null);
   useClickAway(modalRef, () => setSelectedId(null));
   if (isLoading) {
     return <Loading />;
   }
-  if (error) {
-    return <Error err={error.message} />;
-  }
+
   return (
     <div className="bg-neutral-900 min-h-screen text-[#e9e9e9] p-4">
       <NavBar />

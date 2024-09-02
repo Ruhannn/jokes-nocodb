@@ -18,7 +18,7 @@ export default function Error({ err }: { err?: string }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-[#191919] ">
       <div>
-        <h1 className="mb-5 text-2xl text-center">
+        <h1 className="mb-5 text-2xl text-center text-[#c5c5c5]">
           Sorry for unexpected error :C
         </h1>
         <img
