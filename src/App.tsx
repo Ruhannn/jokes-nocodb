@@ -12,7 +12,7 @@ import Footer from "./Components/Footer";
 
 function App() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  console.log(selectedId);
+  // console.log(selectedId);
   const { data, error, isLoading } = useJokes();
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -42,12 +42,23 @@ function App() {
         <AnimatePresence>
           {selectedId && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 overflow-hidden bg-black/50 backdrop-blur-sm "
+              initial={{
+                backdropFilter: "blur(0px)",
+                backgroundColor: "rgb(0 0 0 / 0.0)",
+              }}
+              animate={{
+                backdropFilter: "blur(4px)",
+                backgroundColor: "rgb(0 0 0 / 0.5)",
+              }}
+              exit={{
+                backdropFilter: "blur(0px)",
+                backgroundColor: "rgb(0 0 0 / 0.0)",
+              }}
+              transition={{ duration: 0.1 }}
+              className="fixed inset-0 overflow-hidden backdrop-blur-sm"
             >
               <motion.div
+                // transition={{ type: "spring", stiffness: 350, damping: 25 }}
                 layoutId={selectedId.toString()}
                 className="fixed flex items-center justify-center lg:inset-[120px] inset-6 p-4 rounded-md shadow-md cursor-pointer bg-neutral-800 flex-col"
                 ref={modalRef}
@@ -61,12 +72,20 @@ function App() {
                 <q className="my-4 text-5xl">
                   {data.find((joke: Joke) => joke.Id === selectedId)?.joke}
                 </q>
-                <p>{data.find((joke: Joke) => joke.Id === selectedId)?.name}</p>
-                <p className="text-xl">
+                <p className="text-lg">
+                  {data.find((joke: Joke) => joke.Id === selectedId)?.name}
+                </p>
+                <motion.p
+                  className="text-xl"
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: "100%", opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
                   {formatDateTime(
                     data.find((joke: Joke) => joke.Id === selectedId).CreatedAt
                   )}
-                </p>
+                </motion.p>
               </motion.div>
             </motion.div>
           )}
