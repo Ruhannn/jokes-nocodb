@@ -1,6 +1,6 @@
 export type Joke = {
   Id?: number;
-  title: string;
+  name: string;
   joke: string;
   CreatedAt?: string;
 };

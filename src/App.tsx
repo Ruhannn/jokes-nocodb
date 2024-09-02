@@ -36,7 +36,7 @@ function App() {
           >
             <q>{joke.joke}</q>
 
-            <p>{joke.title}</p>
+            <p>{joke.name}</p>
           </motion.div>
         ))}
         <AnimatePresence>
@@ -49,7 +49,7 @@ function App() {
             >
               <motion.div
                 layoutId={selectedId.toString()}
-                className="fixed flex items-center justify-center inset-[120px] p-4 rounded-md shadow-md cursor-pointer bg-neutral-800 flex-col"
+                className="fixed flex items-center justify-center lg:inset-[120px] inset-6 p-4 rounded-md shadow-md cursor-pointer bg-neutral-800 flex-col"
                 ref={modalRef}
               >
                 <button
@@ -61,9 +61,7 @@ function App() {
                 <q className="my-4 text-5xl">
                   {data.find((joke: Joke) => joke.Id === selectedId)?.joke}
                 </q>
-                <p>
-                  {data.find((joke: Joke) => joke.Id === selectedId)?.title}
-                </p>
+                <p>{data.find((joke: Joke) => joke.Id === selectedId)?.name}</p>
                 <p className="text-xl">
                   {formatDateTime(
                     data.find((joke: Joke) => joke.Id === selectedId).CreatedAt

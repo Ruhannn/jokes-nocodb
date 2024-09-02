@@ -51,8 +51,8 @@ const NavBar = () => {
       toast.info("don't u gonna tell us ;C");
       return;
     }
-    addNewJoke({ title: name, joke: joke });
-    toast.success("may this is the reason of someone's laugh ty ;3");
+    addNewJoke({ name: name, joke: joke });
+    toast.success("may this is the reason of someone's smile ty ;3");
     setIsModalOpen(false);
   };
 

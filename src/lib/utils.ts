@@ -13,3 +13,4 @@ export function formatDateTime(dateTimeString: string): string {
 
   return `${day} ${month} ${year}`;
 }
+
